@@ -1,7 +1,7 @@
 let tasks = [];
 
 // Validating the tasks status
-const validStatuses = ["pending", "in process", "completed"];
+const validStatuses = ["pending", "in-progress", "completed"];
 
 // Creates new task and adds it to in-memory array
 const createTask = (req, res, next) => {
