@@ -112,10 +112,27 @@ const deleteTask = (req, res, next) => {
   });
 };
 
+const patchTask = (req, res, next) => {
+  const { id } = req.params;
+  const updates = req.body;
+
+  const index = tasks.findIndex((t) => t.id === id);
+  if (index === -1) {
+    return next(new Error("Task not found"));
+  }
+
+  tasks[index] = { ...tasks[index], ...updates };
+  res.json(tasks[index]);
+  res.status(200).json({
+    message: "Task patched succesfully",
+  });
+};
+
 module.exports = {
   getTasks,
   getTasksbyID,
   createTask,
   updateTask,
   deleteTask,
+  patchTask,
 };
