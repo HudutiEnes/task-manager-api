@@ -6,6 +6,7 @@ const app = express();
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
+const config = require("../config.json");
 
 // Setup the Log Stream
 const logDirectory = path.join(__dirname, "../logs/");
@@ -37,6 +38,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log("Server is starting on port 3000");
+const PORT = config.port || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is starting on port ${PORT}`);
 });
