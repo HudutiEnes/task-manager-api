@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
+import json
+import requests
+
+with open("../config.json", "r") as f:
+    config = json.load(f)
+
+url = f"http://localhost:{config['port']}/api/v1/tasks"
 
 app_config = {
     "project_name": "task-manager-api",
     "version": "1.0.0",
     "env": "local",
-    "url": "http://localhost:3000",
+    "url": url,
     "root_path": "../",
 }
 
