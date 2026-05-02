@@ -1,4 +1,4 @@
-let tasks = [];
+tasks = require("../../tasks.json");
 
 // Validating the tasks status
 const validStatuses = ["pending", "in-progress", "completed"];

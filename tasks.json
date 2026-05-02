@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "title": "Setup Nginx",
+        "status": "pending"
+    },
+    {
+        "id": 2,
+        "title": "Configure Firewall",
+        "status": "pending"
+    }
+]
