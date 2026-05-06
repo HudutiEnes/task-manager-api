@@ -7,7 +7,7 @@ const validStatuses = ["pending", "in-progress", "completed"];
 const createTask = (req, res, next) => {
     const { title, status, dueDate } = req.body;
 
-    console.log("POST /api/tasks", req.body);
+    console.log("POST /", req.body);
 
     if (!title || !status) {
         return next(new Error("Title and Status are required"));
@@ -38,7 +38,7 @@ const createTask = (req, res, next) => {
 
 // Fetches all tasks from array
 const getTasks = (req, res) => {
-    console.log("GET /api/tasks", req.query);
+    console.log("GET /", req.query);
     res.status(200).json({
         message: "Fetched all tasks",
         task: tasks,
@@ -48,7 +48,7 @@ const getTasks = (req, res) => {
 //Fetches specific task found by id
 const getTasksbyID = (req, res, next) => {
     const { id } = req.params;
-    console.log("GET /api/tasks/:id", id);
+    console.log("GET /:id", id);
 
     const task = tasks.find((t) => t.id === id);
 
