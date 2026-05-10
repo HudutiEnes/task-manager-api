@@ -27,8 +27,17 @@ app.use(morgan("combined", { stream: accessLogStream }));
 // Keep short dev logs in terminal for live feedback
 app.use(morgan("dev"));
 
+// Basic health check
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "UP",
+        timeStamp: new Date().toISOString(),
+    });
+});
+
 // Routes & Error Handling
 const taskRoutes = require("./routes/taskRoutes");
+const { timeStamp } = require("console");
 app.use("/api/v1/tasks", taskRoutes);
 
 app.use((err, req, res, next) => {
