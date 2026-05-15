@@ -53,13 +53,13 @@ To access the API locally through the secure layer:
 
 ## 📮 API Endpoints
 
-| Method | Endpoint         | Description        |
-| ------ | ---------------- | ------------------ |
-| GET    | `/api/tasks`     | Fetch all tasks    |
-| GET    | `/api/tasks/:id` | Fetch a task by ID |
-| POST   | `/api/tasks`     | Create a new task  |
-| PUT    | `/api/tasks/:id` | Update a task      |
-| DELETE | `/api/tasks/:id` | Delete a task      |
+| Method | Endpoint            | Description        |
+| ------ | ------------------- | ------------------ |
+| GET    | `/api/v1/tasks`     | Fetch all tasks    |
+| GET    | `/api/v1/tasks/:id` | Fetch a task by ID |
+| POST   | `/api/v1/tasks`     | Create a new task  |
+| PUT    | `/api/v1/tasks`     | Update a task      |
+| DELETE | `/api/v1/tasks/:id` | Delete a task      |
 
 🧪 Sample Request (POST)
 
