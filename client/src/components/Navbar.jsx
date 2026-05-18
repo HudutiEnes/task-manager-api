@@ -1,5 +1,15 @@
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+const navigate = useNavigate();
+
+const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    setIsAuthenticated(false);
+
+    navigate("/login");
+};
 
 export default function Navbar() {
     return (
@@ -13,6 +23,14 @@ export default function Navbar() {
                 >
                     Login
                 </Link>
+            </div>
+            <div>
+                <button
+                    onClick={handleLogout}
+                    className="bg-zinc-900 hover:bg-red-950 text-zinc-400 hover:text-red-400 border border-zinc-800 hover:border-red-900 px-4 py-2 rounded text-sm font-mono transition-colors"
+                >
+                    Logout
+                </button>
             </div>
         </nav>
     );
