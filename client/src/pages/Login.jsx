@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = ({ setIsAuthenticated }) => {
     const [formData, setFormData] = useState({ username: "", password: "" });
@@ -94,6 +94,16 @@ const Login = ({ setIsAuthenticated }) => {
                 >
                     Submit Credentials
                 </button>
+
+                <p className="text-sm text-zinc-400 text-center">
+                    Don't have an account?{" "}
+                    <Link
+                        to="/register"
+                        className="text-blue-500 hover:underline font-medium"
+                    >
+                        Create an account
+                    </Link>
+                </p>
             </form>
         </div>
     );

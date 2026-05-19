@@ -38,6 +38,7 @@ function App() {
                 <main className="mt-10">
                     <Routes>
                         <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
                         <Route path="/dash" element={<Dashboard />} />
 
                         <Route
@@ -49,7 +50,6 @@ function App() {
                             }
                         >
                             <Route path="/" element={<Home />} />
-                            <Route path="/register" element={<Register />} />
                         </Route>
                     </Routes>{" "}
                 </main>
