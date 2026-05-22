@@ -1,29 +1,19 @@
-import Button from "./Button";
 import { useNavigate, Link } from "react-router-dom";
 
-const navigate = useNavigate();
-
-const handleLogout = () => {
-    localStorage.removeItem("token");
-
-    setIsAuthenticated(false);
-
-    navigate("/login");
-};
-
 export default function Navbar() {
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+
+        setIsAuthenticated(false);
+
+        navigate("/login");
+    };
+
     return (
         <nav className="flex justify-between items-center p-6 border-b border-zinc-800">
             <div className="font-bold text-xl">TM</div>
 
-            <div>
-                <Link
-                    to="/login"
-                    className="px-4 py-2 bg-zinc-100 text-black rounded-md hover:bg-zinc-300 transition-colors"
-                >
-                    Login
-                </Link>
-            </div>
             <div>
                 <button
                     onClick={handleLogout}
