@@ -1,4 +1,5 @@
 tasks = require("../../tasks.json");
+users = require("../../users.json");
 
 // Validating the tasks status
 const validStatuses = ["pending", "in-progress", "completed"];
@@ -128,6 +129,48 @@ const patchTask = (req, res, next) => {
     });
 };
 
+const register = (req, res, next) => {
+    const { name, pass, email } = req.body;
+    if (!name || !pass || !email) {
+        return next(new Error("Please input required fields"));
+    }
+
+    if (pass.length < 5) {
+        return next(new Error("Please put password with 5 or more letters"));
+    }
+
+    const newUser = {
+        name,
+        pass,
+        email,
+    };
+
+    users.push(newUser);
+
+    res.status(201).json({
+        message: "User added succesfully",
+    });
+};
+
+const login = (req, res, next) => {
+    const { email, pass } = req.body;
+    const user = users.find((u) => u.email === email);
+
+    if (!user) {
+        return next(new Error("Invalid try, please register first"));
+    }
+
+    if (pass === user.pass) {
+        res.status(200).json({
+            message: "Login succesfull",
+        });
+    } else {
+        res.status(401).json({
+            message: "Wrong password please try again",
+        });
+    }
+};
+
 module.exports = {
     getTasks,
     getTasksbyID,
@@ -135,4 +178,6 @@ module.exports = {
     updateTask,
     deleteTask,
     patchTask,
+    register,
+    login,
 };

@@ -8,6 +8,8 @@ const {
     updateTask,
     deleteTask,
     patchTask,
+    register,
+    login,
 } = require("../controllers/tasksControllers");
 
 router.get("/", getTasks);
@@ -16,5 +18,7 @@ router.post("/", createTask);
 router.put("/:id", updateTask);
 router.delete("/:id", deleteTask);
 router.patch("/:id", patchTask);
+router.post("/auth/register", register);
+router.get("/auth/login", login);
 
 module.exports = router;
