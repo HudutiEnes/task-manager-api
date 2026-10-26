@@ -39,6 +39,7 @@ app.get("/health", (req, res) => {
 const taskRoutes = require("./routes/taskRoutes");
 const { timeStamp } = require("console");
 app.use("/api/v1/tasks", taskRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

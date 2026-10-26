@@ -1,12 +1,12 @@
 [
     {
         "Uname": "Enes",
-        "Pass": "Enes",
+        "pass": "Enes",
         "email": "eneshuduti12@gmail.com"
     },
     {
         "Uname": "Emir",
-        "Pass": "Emir",
+        "pass": "Emir",
         "email": "emir@gmail.com"
     }
 ]
