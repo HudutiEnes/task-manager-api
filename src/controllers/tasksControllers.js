@@ -135,6 +135,4 @@ module.exports = {
     updateTask,
     deleteTask,
     patchTask,
-    register,
-    login,
 };
