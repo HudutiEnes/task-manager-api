@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-users = require("../../users.json");
+const users = require("../../users.json");
 
 const SALT_ROUNDS = 11;
 
@@ -15,6 +15,10 @@ const register = async (req, res, next) => {
         return next(new Error("Please input valid email"));
     }
 
+    if (typeof pass != "string") {
+        return next(new Error("Please input valid password"));
+    }
+
     // Checking if user inputed password with enough length
     if (pass.length < 7) {
         return next(new Error("Please put password with 7 or more letters"));
@@ -25,7 +29,7 @@ const register = async (req, res, next) => {
     );
 
     if (existingUser) {
-        res.status(401).json({
+        res.status(409).json({
             message: "Account with same email exists",
         });
         return;
@@ -51,6 +55,14 @@ const login = async (req, res, next) => {
         return next(new Error("Please input email and password."));
     }
 
+    if (typeof email != "string") {
+        return next(new Error("Please input valid email"));
+    }
+
+    if (typeof pass != "string") {
+        return next(new Error("Please input valid password"));
+    }
+
     // Normalizing email to lowercase to match with database email
     const normalizeEmail = email.trim().toLowerCase();
 
@@ -62,21 +74,24 @@ const login = async (req, res, next) => {
         return next(new Error("Invalid try, please register first"));
     }
 
-    async function VerifyPassword(password, storedPassword) {
-        try {
-            const isMatch = await bcrypt.compare(password, storedPassword);
-            return isMatch;
-        } catch (error) {
-            return next(new Error("The password is not correct"));
-        }
+    function VerifyPassword(password, storedPassword) {
+        return bcrypt.compare(password, storedPassword);
     }
 
-    if (await VerifyPassword(pass, user.pass)) {
-        res.status(200).json({
-            message: "Login succesfull",
-        });
-    } else {
-        return next(new Error("Password is incorrect"));
+    try {
+        const isMatch = await VerifyPassword(pass, user.pass);
+
+        if (isMatch) {
+            res.status(200).json({
+                message: "Login succesfull",
+            });
+        } else {
+            res.status(401).json({
+                message: "Wrong password",
+            });
+        }
+    } catch (error) {
+        return next(error);
     }
 };
 
